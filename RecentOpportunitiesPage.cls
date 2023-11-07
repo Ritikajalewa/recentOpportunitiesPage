@@ -4,14 +4,6 @@ public with sharing class RecentOpportunitiesPage {
         List<Opportunity> oppList =[SELECT Id,Name,CloseDate,StageName,Amount FROM Opportunity WHERE CreatedDate >= Last_N_Months:3 order by CreatedDate DESC];
         return oppList;
     }
-    @AuraEnabled(Cacheable=true) 
-    public static Decimal getTotalAmount(List<Opportunity> oppList){
-        Decimal totalAmount=0.0;
-        for(Opportunity opp: oppList){
-            totalAmount+=opp.Amount;
-        }
-        return totalAmount;
-    }
     @AuraEnabled
     public static List<Opportunity> getFilteredOpportunity(String name,Date closeDate, String stageName, Integer amount){
         String newSearchName = '%'+name+'%';
