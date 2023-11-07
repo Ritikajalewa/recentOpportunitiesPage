@@ -82,12 +82,19 @@ export default class RecentOpportunitiesPage extends LightningElement {
             this.totalRecords = result.length;           
             this.totalPages = Math.ceil(this.totalRecords / this.pageSize);
             this.paginationHelper();
+            const event = new ShowToastEvent({
+                title: 'Success',
+                message:'Data is filtered Successfully!!',
+                variant: 'success'
+            });
+            this.dispatchEvent(event);
         })
         .catch(error =>{
             console.log(error);
             const event = new ShowToastEvent({
                 title: 'Error',
-                message:error
+                message:JSON.stringify(error),
+                variant: 'error'
             });
             this.dispatchEvent(event);
         })
@@ -102,12 +109,23 @@ export default class RecentOpportunitiesPage extends LightningElement {
             this.totalRecords = result.length;           
             this.totalPages = Math.ceil(this.totalRecords / this.pageSize);
             this.paginationHelper();
+            this.name='';
+            this.closeDate=null;
+            this.stageName='';
+            this.amount=null;
+            const event = new ShowToastEvent({
+                title: 'Success',
+                message:'Data is Reseted Successfully!!',
+                variant: 'success'
+            });
+            this.dispatchEvent(event);
         })
         .catch(error =>{
             console.log(error);
             const event = new ShowToastEvent({
                 title: 'Error',
-                message:error
+                message:JSON.stringify(error),
+                variant: 'error'
             });
             this.dispatchEvent(event);
         })
