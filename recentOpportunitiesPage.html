@@ -1,13 +1,26 @@
 <template>
 <lightning-card title="Recent Opportunity Page">
     <br/>
-    <lightning-input type="String" label="Opportunity Name" name="Opportunity Name" onchange={handleNameChange}></lightning-input>
-    <lightning-input type="Date" label="Close Date" name="Close Date" onchange={handleDateChange}></lightning-input>
-    <lightning-input type="String" label="Stage" name="Stage" onchange={handleStageChange}></lightning-input>
-    <lightning-input type="Integer" label="Amount" name="Amount" onchange={handleAmountChange}></lightning-input>
-    <lightning-button label ="Search" name="Search" onclick={applyFilter}></lightning-button>
-    <lightning-button label ="Reset" name="Reset" onclick={resetFilter}></lightning-button>
-
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <lightning-input type="String" value={name} label="Opportunity Name" name="Opportunity Name" onchange={handleNameChange}></lightning-input>
+        </div>
+        <div class="slds-col">
+            <lightning-input type="Date" value={closeDate} label="Close Date" name="Close Date" onchange={handleDateChange}></lightning-input>
+        </div>
+        <div class="slds-col">
+            <lightning-input type="String" value={stageName} label="Stage" name="Stage" onchange={handleStageChange}></lightning-input>
+        </div>
+        <div class="slds-col">
+            <lightning-input type="Integer" value={amount} label="Amount" name="Amount" onchange={handleAmountChange}></lightning-input>
+        </div>
+      </div>
+      <br/>
+      <div class="slds-align_absolute-center">
+        <lightning-button label ="Search" name="Search" class="slds-m-right_medium" onclick={applyFilter}></lightning-button>
+        <lightning-button label ="Reset" name="Reset" onclick={resetFilter}></lightning-button>
+      </div>
+<br/>
     <div style="width: auto;">
         <template if:true={data}>
             <lightning-datatable data={recordsToDisplay}
