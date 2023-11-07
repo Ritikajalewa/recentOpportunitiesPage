@@ -73,6 +73,7 @@ export default class RecentOpportunitiesPage extends LightningElement {
     applyFilter(){
         getFilteredOpportunity({name:this.name,closeDate:this.closeDate,stageName:this.stageName,amount:this.amount })
         .then(result => {
+            this.totalAmount=0.0;
             this.data=result;
             this.recordsToDisplay=result;
             this.data.map(i => {
@@ -103,8 +104,12 @@ export default class RecentOpportunitiesPage extends LightningElement {
         // refreshApex(this._wiredData)
         getOpportunity()
         .then(result => {
+            this.totalAmount=0.0;
             this.data=result;
             this.recordsToDisplay=result;
+            this.data.map(i => {
+				this.totalAmount += i.Amount;
+			});
             this.totalRecords = result.length;           
             this.totalPages = Math.ceil(this.totalRecords / this.pageSize);
             this.paginationHelper();
