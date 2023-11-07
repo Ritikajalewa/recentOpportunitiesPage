@@ -1,0 +1,40 @@
+<template>
+<lightning-card title="Recent Opportunity Page">
+    <br/>
+    <lightning-input type="String" label="Opportunity Name" name="Opportunity Name" onchange={handleNameChange}></lightning-input>
+    <lightning-input type="Date" label="Close Date" name="Close Date" onchange={handleDateChange}></lightning-input>
+    <lightning-input type="String" label="Stage" name="Stage" onchange={handleStageChange}></lightning-input>
+    <lightning-input type="Integer" label="Amount" name="Amount" onchange={handleAmountChange}></lightning-input>
+    <lightning-button label ="Search" name="Search" onclick={applyFilter}></lightning-button>
+    <lightning-button label ="Reset" name="Reset" onclick={resetFilter}></lightning-button>
+
+    <div style="width: auto;">
+        <template if:true={data}>
+            <lightning-datatable data={recordsToDisplay}
+                                 columns={columns}
+                                 key-field="id"
+                                 sorted-by={sortBy}
+                                 sorted-direction={sortDirection}
+                                 onsort={doSorting}
+                                 hide-checkbox-column="true"></lightning-datatable>
+        </template>
+        <div class="slds-align_absolute-center" style="height:5rem">
+            <lightning-button disabled={bDisableFirst} icon-name="utility:jump_to_left" label="First" class="slds-p-horizontal_x-small" alternative-text="first page" onclick={firstPage}></lightning-button>
+            <lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+            &nbsp;
+            <span>Showing {pageNumber} &nbsp;of&nbsp; {totalPages} &nbsp;&nbsp;Page(s)</span>
+            &nbsp;
+            <lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+            <lightning-button disabled={bDisableLast} icon-name="utility:jump_to_right" label="Last" alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <p>Total Number: {totalRecords}</p>
+            </div>
+            <div class="slds-col">
+                <p>Total Amount: {totalAmount}</p>
+            </div>
+          </div>
+    </div>
+</lightning-card>
+</template>
