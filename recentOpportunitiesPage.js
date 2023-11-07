@@ -1,7 +1,6 @@
 import { LightningElement ,wire,track} from 'lwc';
 import getOpportunity from '@salesforce/apex/RecentOpportunitiesPage.getOpportunity';
 import getFilteredOpportunity from '@salesforce/apex/RecentOpportunitiesPage.getFilteredOpportunity';
-import getTotalAmount from '@salesforce/apex/RecentOpportunitiesPage.getTotalAmount';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 
